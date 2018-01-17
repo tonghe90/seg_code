@@ -132,7 +132,7 @@ def train():
         os.mkdir(args.save_dir)
 
     if args.data_provider == "coco":
-        pass
+        #pass
         coco_provider_train = COCO_detection_train(args.root_dir, args.json_file_train)
         coco_provider_val = COCO_detection_train(args.root_dir, args.json_file_val)
 
