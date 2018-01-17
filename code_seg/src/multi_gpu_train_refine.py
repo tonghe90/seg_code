@@ -260,23 +260,6 @@ def train():
         assert label_blob.shape[0] == total_size
         assert data_blob.shape[0] == total_size
 
-        ### prepare data
-        #for cur_id in range(solver.num_gpus):
-        #    start = int(cur_id * args.batch_size)
-        #    end = int((cur_id + 1) * args.batch_size)
-        #    while True:
-        #        images, labels = data_provider_train.get_batch(args.batch_size)
-        #        data_blob[start:end] = images
-        #        labels_resize = np.zeros((labels.shape[0], label_sz, label_sz), dtype=np.int32)
-        #        for n in range(labels.shape[0]):
-        #            labels_resize[n] = cv2.resize(labels[n], (label_sz, label_sz),
-        #                                              interpolation=cv2.INTER_NEAREST)
-
-        #        label_blob[start:end] = labels_resize
-        #        if np.any(labels_resize >= 0):
-        #            break
-
-
         ### run training op
         _, losses_value, _, summary, global_step_val = sess.run([train_op, total_loss, metric['op'], all_summaries, global_step],
                  feed_dict={inputs['images']: data_blob, label_gt['labels']: label_blob})
